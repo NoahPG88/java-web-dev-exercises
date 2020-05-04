@@ -7,11 +7,11 @@ public class Student {
 
     private String name;
     private Integer studentId;
-    private int numberOfCredits = 0;
-    private double gpa = 0.0;
+    private Integer numberOfCredits = 0;
+    private Double gpa = 0.0;
 
     //Constructor?
-    public Student (String name, Integer studentId, int numberOfCredits, double gpa){
+    public Student (String name, Integer studentId, Integer numberOfCredits, Double gpa){
         this.name = name;
         this.studentId = studentId;
         this.numberOfCredits = numberOfCredits;
@@ -32,6 +32,21 @@ public class Student {
         }
     }
 
+    private static Double qualityScore(Double grade, Integer credits){
+        Double classQualityScore = grade/credits;
+        return classQualityScore;
+    }
+
+    public void addGrade(Double grade, Integer credits){
+        Double currentQualityScore = this.getNumberOfCredits() * this.getGpa();
+        Double addQualityScore = credits * grade;
+        Double totalQualityScore = currentQualityScore + addQualityScore;
+        this.numberOfCredits += credits;
+
+        Double newGpa = totalQualityScore/this.numberOfCredits;
+        setGpa(newGpa);
+
+    }
     //GETS AND SETS
     public String getName() {
         return name;
